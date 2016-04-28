@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="96" tileheight="96" nextobjectid="21">
+ <tileset firstgid="1" name="Main" tilewidth="96" tileheight="96" tilecount="72" columns="8">
+  <image source="../textures/tileset.png" width="768" height="96"/>
+  <terraintypes>
+   <terrain name="Test" tile="-1"/>
+  </terraintypes>
+  <tile id="0" terrain="0,,,"/>
+  <tile id="1" terrain=",,,0"/>
+ </tileset>
+ <tileset firstgid="73" name="Character" tilewidth="32" tileheight="32" tilecount="32" columns="8">
+  <image source="../textures/character.png" width="256" height="128"/>
+ </tileset>
+ <layer name="Base" width="15" height="15">
+  <data encoding="csv">
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,
+2,1,2,2,2,2,2,2,2,2,1,2,2,2,3,
+2,2,2,2,2,2,2,1,2,2,2,2,2,1,3,
+2,2,1,2,2,2,2,2,2,2,2,2,2,2,3,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,
+2,2,2,2,2,2,1,2,2,2,2,1,2,2,3,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,
+2,2,2,1,2,2,2,2,2,2,2,2,2,2,3,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,3
+</data>
+ </layer>
+</map>

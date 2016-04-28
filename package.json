@@ -1,0 +1,36 @@
+{
+  "name": "BattleMonsters",
+  "version": "0.1.0",
+  "filenameBase": "battlemonsters",
+  "description": "Description for BattleMonsters.",
+  "author": {
+    "name": "Chris Normansell",
+    "email": "chris.normansell@gmail.com"
+  },
+
+  "homepage": "http://kiwijs.org/",
+  "bugs": "",
+  "license": "MIT",
+  "licenseUrl": "",
+
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+
+  "main": "src",
+
+  "scripts": {
+    "start": "http-server -a localhost -p 3000",
+    "build": "gulp"
+  },
+
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-copy": "0.0.2",
+    "gulp-typescript": "^2.12.2",
+    "http-server": "^0.9.0"
+  }
+}

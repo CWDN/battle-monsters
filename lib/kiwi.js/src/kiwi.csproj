@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{A835E01F-CD4A-4548-A751-91915D1465AA}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin</OutputPath>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="components\Box.ts" />
+    <Content Include="core\Game.ts" />
+    <Content Include="animations\Animation.ts" />
+    <Content Include="core\PluginManager.ts" />
+    <Content Include="file\DataLibrary.ts" />
+    <Content Include="file\File.ts" />
+    <Content Include="file\FileStore.ts" />
+    <Content Include="file\Loader.ts" />
+    <Content Include="gl-matrix-min.js" />
+    <Content Include="hud\components\Time.ts" />
+    <Content Include="input\MouseCursor.ts" />
+    <Content Include="input\Pointer.ts" />
+    <Content Include="render\filters\BlurFilter.ts" />
+    <Content Include="render\filters\BrightnessContrastFilter.ts" />
+    <Content Include="render\filters\DotscreenFilter.ts" />
+    <Content Include="render\filters\Filter.ts" />
+    <Content Include="render\filters\GLFilterManager.ts" />
+    <Content Include="render\filters\GLFilterRenderer.ts" />
+    <Content Include="render\filters\GrayScaleFilter.ts" />
+    <Content Include="render\filters\HalftoneFilter.ts" />
+    <Content Include="render\filters\HexPixelationFilter.ts" />
+    <Content Include="render\filters\HueSaturationFilter.ts" />
+    <Content Include="render\filters\InkFilter.ts" />
+    <Content Include="render\filters\PixelateFilter.ts" />
+    <Content Include="render\filters\PosterizeFilter.ts" />
+    <Content Include="render\filters\SepiaFilter.ts" />
+    <Content Include="render\filters\SwirlFilter.ts" />
+    <Content Include="render\filters\VibranceFilter.ts" />
+    <Content Include="render\filters\VignetteFilter.ts" />
+    <Content Include="render\filters\ZoomBlurFilter.ts" />
+    <Content Include="render\GLArrayBuffer.ts" />
+    <Content Include="render\GLElementArrayBuffer.ts" />
+    <Content Include="render\GLRenderManager.ts" />
+    <Content Include="render\GLShaderManager.ts" />
+    <Content Include="render\shaders\filters\BlurShaderX.ts" />
+    <Content Include="render\shaders\filters\BlurShaderY.ts" />
+    <Content Include="render\shaders\filters\BrightnessContrastShader.ts" />
+    <Content Include="render\shaders\filters\DotscreenShader.ts" />
+    <Content Include="render\shaders\filters\GrayScaleShader.ts" />
+    <Content Include="render\shaders\filters\HalftoneShader.ts" />
+    <Content Include="render\shaders\filters\HexPixelationShader.ts" />
+    <Content Include="render\shaders\filters\HueSaturationShader.ts" />
+    <Content Include="render\shaders\filters\InkShader.ts" />
+    <Content Include="render\shaders\filters\PixelateShader.ts" />
+    <Content Include="render\shaders\filters\PosterizeShader.ts" />
+    <Content Include="render\shaders\filters\SepiaShader.ts" />
+    <Content Include="render\shaders\filters\SwirlShader.ts" />
+    <Content Include="render\shaders\filters\VibranceShader.ts" />
+    <Content Include="render\shaders\filters\VignetteShader.ts" />
+    <Content Include="render\shaders\filters\ZoomBlurShader.ts" />
+    <Content Include="render\shaders\ShaderPair.ts" />
+    <Content Include="render\GLTextureWrapper.ts" />
+    <Content Include="render\GLTextureManager.ts" />
+    <Content Include="render\renderers\Renderer.ts" />
+    <Content Include="render\renderers\TextureAtlasRenderer.ts" />
+    <Content Include="render\shaders\TextureAtlasShader.ts" />
+    <Content Include="utils\Version.ts" />
+    <Content Include="WebGL.d.ts" />
+    <Content Include="sound\AudioLibrary.ts" />
+    <Content Include="textures\TextureAtlas.ts" />
+    <Content Include="animations\Sequence.ts" />
+    <Content Include="textures\SingleImage.ts" />
+    <Content Include="textures\SpriteSheet.ts" />
+    <Content Include="sound\AudioManager.ts" />
+    <Content Include="sound\Audio.ts" />
+    <Content Include="components\Sound.ts" />
+    <Content Include="components\ArcadePhysics.ts" />
+    <Content Include="textures\TextureLibrary.ts" />
+    <Content Include="components\AnimationManager.ts" />
+    <Content Include="components\Input.ts" />
+    <Content Include="core\Component.ts" />
+    <Content Include="core\CameraManager.ts" />
+    <Content Include="core\Camera.ts" />
+    <Content Include="core\Entity.ts" />
+    <Content Include="system\Device.ts" />
+    <Content Include="core\ComponentManager.ts" />
+    <Content Include="core\StateManager.ts" />
+    <Content Include="core\State.ts" />
+    <Content Include="core\Group.ts" />
+    <Content Include="core\IChild.ts" />
+    <Content Include="core\Stage.ts" />
+    <Content Include="core\Signal.ts" />
+    <Content Include="core\SignalBinding.ts" />
+    <Content Include="core\StateConfig.ts" />
+    <Content Include="geom\Circle.ts" />
+    <Content Include="system\Bootstrap.ts" />
+    <Content Include="gameobjects\StaticImage.ts" />
+    <Content Include="gameobjects\Sprite.ts" />
+    <Content Include="geom\AABB.ts" />
+    <Content Include="gameobjects\TextField.ts" />
+    <Content Include="gameobjects\tilemap\TileType.ts" />
+    <Content Include="gameobjects\tilemap\TileMap.ts" />
+    <Content Include="gameobjects\tilemap\TileMapLayer.ts" />
+    <Content Include="geom\Line.ts" />
+    <Content Include="geom\IntersectResult.ts" />
+    <Content Include="geom\Intersect.ts" />
+    <Content Include="input\Mouse.ts" />
+    <Content Include="input\InputManager.ts" />
+    <Content Include="input\Finger.ts" />
+    <Content Include="geom\Matrix.ts" />
+    <Content Include="geom\Transform.ts" />
+    <Content Include="geom\Vector2.ts" />
+    <Content Include="geom\Ray.ts" />
+    <Content Include="hud\components\Counter.ts" />
+    <Content Include="hud\components\WidgetInput.ts" />
+    <Content Include="hud\HUDDisplay.ts" />
+    <Content Include="hud\HUDManager.ts" />
+    <Content Include="hud\HUDWidget.ts" />
+    <Content Include="hud\widgets\Bar.ts" />
+    <Content Include="hud\widgets\BasicScore.ts" />
+    <Content Include="hud\widgets\Icon.ts" />
+    <Content Include="hud\widgets\Button.ts" />
+    <Content Include="hud\widgets\IconBar.ts" />
+    <Content Include="hud\widgets\Menu.ts" />
+    <Content Include="hud\widgets\MenuItem.ts" />
+    <Content Include="hud\widgets\TextField.ts" />
+    <Content Include="hud\widgets\Time.ts" />
+    <Content Include="input\Key.ts" />
+    <Content Include="input\Keyboard.ts" />
+    <Content Include="input\Keycodes.ts" />
+    <Content Include="input\Touch.ts" />
+    <Content Include="Kiwi.js">
+      <DependentUpon>Kiwi.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="file\DataFile.ts" />
+    <TypeScriptCompile Include="Kiwi.ts" />
+    <Content Include="geom\Point.ts" />
+    <Content Include="geom\Rectangle.ts" />
+    <Content Include="render\GLBlendMode.ts" />
+    <TypeScriptCompile Include="file\AudioFile.ts" />
+    <TypeScriptCompile Include="file\TextureFile.ts" />
+    <TypeScriptCompile Include="utils\Log.ts" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="time\Clock.ts" />
+    <Content Include="render\CanvasRenderer.ts" />
+    <Content Include="time\ClockManager.ts" />
+    <Content Include="time\MasterClock.ts" />
+    <Content Include="time\Timer.ts" />
+    <Content Include="time\TimerEvent.ts" />
+    <Content Include="animations\tweens\easing\Back.ts" />
+    <Content Include="animations\tweens\easing\Bounce.ts" />
+    <Content Include="animations\tweens\easing\Circular.ts" />
+    <Content Include="animations\tweens\easing\Cubic.ts" />
+    <Content Include="animations\tweens\easing\Elastic.ts" />
+    <Content Include="animations\tweens\easing\Exponential.ts" />
+    <Content Include="animations\tweens\easing\Linear.ts" />
+    <Content Include="animations\tweens\easing\Quadratic.ts" />
+    <Content Include="animations\tweens\easing\Quartic.ts" />
+    <Content Include="animations\tweens\easing\Quintic.ts" />
+    <Content Include="animations\tweens\easing\Sinusoidal.ts" />
+    <Content Include="animations\tweens\TweenManager.ts" />
+    <Content Include="animations\tweens\Tween.ts" />
+    <Content Include="utils\GameMath.ts" />
+    <Content Include="utils\Canvas.ts" />
+    <Content Include="utils\Common.ts" />
+    <Content Include="utils\RequestAnimationFrame.ts" />
+    <Content Include="utils\RandomDataGenerator.ts" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Kiwi</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51267</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:54758/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptIncludeComments>true</TypeScriptIncludeComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+    <TypeScriptOutFile>../build/kiwi.js</TypeScriptOutFile>
+    <IntermediateOutputPath>C:\Users\Benj\AppData\Local\Temp\vs2B63.tmp\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\Benjamin\AppData\Local\Temp\vs4A8.tmp\Debug\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptIncludeComments>true</TypeScriptIncludeComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+    <TypeScriptOutFile>../build/kiwi.js</TypeScriptOutFile>
+    <IntermediateOutputPath>C:\Users\Benj\AppData\Local\Temp\vs2B63.tmp\Release\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\Benjamin\AppData\Local\Temp\vs4A8.tmp\Release\</IntermediateOutputPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy $(ProjectDir)\..\build\kiwi.js $(ProjectDir)\..\templateGame\lib\kiwi.js
+$(ProjectDir)\..\postbuildbatch</PostBuildEvent>
+  </PropertyGroup>
+</Project>
