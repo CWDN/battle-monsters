@@ -20,14 +20,23 @@
         "./src/**/*.ts"
     ],
     "exclude": [
-         "typings/browser.d.ts",
-         "typings/browser",
-         "node_modules",
-         "bower_components"
+        "typings/browser.d.ts",
+        "typings/browser",
+        "node_modules",
+        "bower_components",
+        "plugins"
     ],
     "compileOnSave": true,
     "buildOnSave": false,
     "atom": {
-        "rewriteTsconfig": false
-    }
+        "rewriteTsconfig": true
+    },
+    "files": [
+        "./src/game.ts",
+        "./src/Components/KeyboardMovement.ts",
+        "./src/Entities/TileEntity.ts",
+        "./src/States/Intro.ts",
+        "./src/States/Loading.ts",
+        "./src/States/Play.ts"
+    ]
 }

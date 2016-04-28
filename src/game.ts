@@ -7,7 +7,8 @@ var gameOptions = {
   renderer: Kiwi.RENDERER_WEBGL,
   width: window.innerWidth,
   height: window.innerHeight,
-  debug: Kiwi.DEBUG_OFF
+  debug: Kiwi.DEBUG_OFF,
+  plugins: ['DamagePipeline']
 }
 
 var game = new Kiwi.Game('content', 'BattleMonsters', null, gameOptions);
