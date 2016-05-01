@@ -2,8 +2,6 @@
   "name": "BattleMonsters",
   "version": "0.1.0",
   "dependencies": {
-  	"kiwi.js": "https://github.com/gamelab/kiwi.js.git"
-  	
+      "kiwijs": "1.4.0-release"
   }
 }
-
