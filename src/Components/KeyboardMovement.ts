@@ -32,9 +32,6 @@ module BattleMonsters.Components {
             else if (this.upKey.isDown) {
                 owner.moveUp();
             }
-            else {
-                owner.idle();
-            }
         }
     }
 }
