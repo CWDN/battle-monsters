@@ -5,7 +5,7 @@ module BattleMonsters.Entities {
          *
          * @type {number}
          */
-        public speed: number = 200;
+        public speed: number = 225;
 
         /**
          * Next X Pos which is the actual X position.
@@ -87,10 +87,12 @@ module BattleMonsters.Entities {
                     if (left < Math.abs(xChange)) {
                         this.x += left * (xChange / Math.abs(xChange));
                         this.prevDx = 0;
+                        this.idle();
                     } else {
                         this.x = this.nextXPos;
                     }
                 } else {
+                    this.idle();
                     this.prevDx = 0;
                 }
             }
@@ -113,11 +115,13 @@ module BattleMonsters.Entities {
                     if (left < Math.abs(yChange)) {
                         this.y += left * (yChange / Math.abs(yChange));
                         this.prevDy = 0;
+                        this.idle();
                     } else {
                         this.y = this.nextYPos;
                     }
                 } else {
                     this.prevDy = 0;
+                    this.idle();
                 }
             }
 
@@ -143,7 +147,7 @@ module BattleMonsters.Entities {
          */
         public moveUp() {
             this.resetHorizontalMovement();
-            this.animation.play('up');
+            this.playAnimation('up');
 
             if (this.prevDx === 0) {
                 this.dy = -this.speed;
@@ -157,7 +161,7 @@ module BattleMonsters.Entities {
          */
         public moveDown() {
             this.resetHorizontalMovement();
-            this.animation.play('down');
+            this.playAnimation('down');
 
             if (this.prevDx === 0) {
                 this.dy = this.speed;
@@ -171,7 +175,7 @@ module BattleMonsters.Entities {
          */
         public moveRight() {
             this.resetVerticalMovement();
-            this.animation.play('right');
+            this.playAnimation('right');
 
             if (this.prevDy === 0) {
                 this.dx = this.speed;
@@ -185,7 +189,7 @@ module BattleMonsters.Entities {
          */
         public moveLeft() {
             this.resetVerticalMovement();
-            this.animation.play('left');
+            this.playAnimation('left');
 
             if (this.prevDy === 0) {
                 this.dx = -this.speed;
@@ -193,7 +197,7 @@ module BattleMonsters.Entities {
         }
 
         public idle() {
-            this.animation.play('idle');
+            this.playAnimation('idle');
         }
 
         /**
@@ -212,6 +216,10 @@ module BattleMonsters.Entities {
          */
         public resetHorizontalMovement() {
             this.dx = 0;
+        }
+
+        public playAnimation(name : string) {
+            this.animation.play(name, false);
         }
     }
 }
