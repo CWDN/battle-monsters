@@ -24,7 +24,8 @@
         "typings/browser",
         "node_modules",
         "bower_components",
-        "plugins"
+        "plugins",
+        "lib"
     ],
     "compileOnSave": true,
     "buildOnSave": false,
@@ -34,7 +35,17 @@
     "files": [
         "./src/game.ts",
         "./src/Components/KeyboardMovement.ts",
+        "./src/Entities/Monsters/BaseMonster.ts",
+        "./src/Entities/Monsters/EarthMonster.ts",
+        "./src/Entities/Monsters/FireMonster.ts",
+        "./src/Entities/Monsters/WaterMonster.ts",
+        "./src/Entities/Monsters/WindMonster.ts",
         "./src/Entities/TileEntity.ts",
+        "./src/Nodes/Multipliers/EarthMultiplier.ts",
+        "./src/Nodes/Multipliers/FireMultiplier.ts",
+        "./src/Nodes/Multipliers/Multiplier.ts",
+        "./src/Nodes/Multipliers/WaterMultiplier.ts",
+        "./src/Nodes/Multipliers/WindMultipler.ts",
         "./src/States/Intro.ts",
         "./src/States/Loading.ts",
         "./src/States/Play.ts"
