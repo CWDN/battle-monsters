@@ -508,7 +508,7 @@ declare module Kiwi.Plugins.DamagePipeline {
      *   @param [params.valueMax=100] {Number} Maximum value of meter
      * @since 0.1.0
      */
-    class MeterNode {
+    class MeterNode extends PipelineNode {
 
         constructor(params: Object);
 
