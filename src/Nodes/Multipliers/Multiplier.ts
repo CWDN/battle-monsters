@@ -1,20 +1,36 @@
-module BattleMonsters.Nodes.Multipliers {
-    export class Multiplier extends Kiwi.Plugins.DamagePipeline.PipelineNode {
+import PipelineNode = Kiwi.Plugins.DamagePipeline.PipelineNode;
+import Pack = Kiwi.Plugins.DamagePipeline.Pack;
 
-        multiplier: number;
+abstract class Multiplier extends PipelineNode {
 
-        constructor(multiplier: number, name: string, tags: any) {
-            super({
-                name: name,
-                tags: tags
-            });
+    multiplier: number;
 
-            this.multiplier = multiplier;
-        }
+    /**
+     * Creates an instance of Multiplier.
+     *
+     * @param {number} multiplier Multiple to apply to the pack
+     * @param {string} name Name of this multiplier
+     * @param {(string | string[])} tags Tags used to pull specific packs from pipeline
+     */
+    constructor(multiplier: number, name: string, tags: string | string[]) {
+        super({
+            name: name,
+            tags: tags
+        });
 
-        _operate(pack: Kiwi.Plugins.DamagePipeline.Pack) {
-            pack.value *= this.multiplier;
-            return pack;
-        }
+        this.multiplier = multiplier;
+    }
+
+    /**
+     * Perform any modifications to the pack given.
+     *
+     * @param {Kiwi.Plugins.DamagePipeline.Pack} pack Pack to modify
+     * @returns (description)
+     */
+    _operate(pack: Pack) {
+        pack.value *= this.multiplier;
+        return pack;
     }
 }
+
+export { Multiplier };

@@ -1,14 +1,18 @@
-/// <reference path="./Multiplier.ts"/>
+import { Multiplier } from './Multiplier';
 
-module BattleMonsters.Nodes.Multipliers {
-    export class EarthMultiplier extends Multiplier {
-
-        constructor(multiplier: number) {
-            super(
-                multiplier,
-                "Earth Multiplier",
-                "EARTH"
-            );
-        }
+class EarthMultiplier extends Multiplier {
+    /**
+     * Creates an instance of EarthMultiplier.
+     *
+     * @param {number} multiplier Multiplier that will affect the pack.
+     */
+    constructor(multiplier: number) {
+        super(
+            multiplier,
+            "Earth Multiplier",
+            "EARTH"
+        );
     }
 }
+
+export { EarthMultiplier };

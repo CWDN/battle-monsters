@@ -1,26 +1,34 @@
-/// <reference path="./BaseMonster.ts"/>
-/// <reference path="../../Nodes/Multipliers/FireMultiplier.ts"/>
-/// <reference path="../../Nodes/Multipliers/WindMultipler.ts"/>
+import { BaseMonster } from './BaseMonster';
+import { FireMultiplier, WindMultiplier } from '../../Nodes/Multipliers';
 
-module BattleMonsters.Entities.Monsters {
-    export class EarthMonster extends BaseMonster {
+class EarthMonster extends BaseMonster {
 
-        constructor(
-            state: Kiwi.State,
-            texture: Kiwi.Textures.SpriteSheet,
-            x,
-            y,
-            health
-        ) {
-            super(state, texture, x, y, health);
+    /**
+     * Creates an instance of EarthMonster.
+     *
+     * @param {Kiwi.State} state State entity is in
+     * @param {Kiwi.Textures.SpriteSheet} texture Texture to draw
+     * @param x Starting X position
+     * @param y Starting Y position
+     * @param health Initial health
+     */
+    constructor(
+        state: Kiwi.State,
+        texture: Kiwi.Textures.SpriteSheet,
+        x: number,
+        y: number,
+        health: number
+    ) {
+        super(state, texture, x, y, health);
 
-            var fireNode =  new BattleMonsters.Nodes.Multipliers.FireMultiplier(2);
-            var windNode = new BattleMonsters.Nodes.Multipliers.WindMultiplier(0.5);
+        var fireNode = new FireMultiplier(2);
+        var windNode = new WindMultiplier(0.5);
 
-            fireNode.addChild(this.damagePipeline);
-            windNode.addChild(fireNode);
+        fireNode.addChild(this.damagePipeline);
+        windNode.addChild(fireNode);
 
-            this.damagePipeline = windNode;
-        }
+        this.damagePipeline = windNode;
     }
 }
+
+export { EarthMonster };

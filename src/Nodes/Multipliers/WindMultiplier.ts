@@ -1,18 +1,18 @@
 import { Multiplier } from './Multiplier';
 
-class WaterMultiplier extends Multiplier {
+class WindMultiplier extends Multiplier {
     /**
-     * Creates an instance of WaterMultiplier.
+     * Creates an instance of WindMultiplier.
      *
      * @param {number} multiplier Multiplier that will affect the pack.
      */
     constructor(multiplier: number) {
         super(
             multiplier,
-            "Water Multiplier",
-            "WATER"
+            "Wind Multiplier",
+            "WIND"
         );
     }
 }
 
-export { WaterMultiplier };
+export { WindMultiplier };

@@ -1,14 +1,18 @@
-/// <reference path="./Multiplier.ts"/>
+import { Multiplier } from './Multiplier';
 
-module BattleMonsters.Nodes.Multipliers {
-    export class FireMultiplier extends Multiplier {
-
-        constructor(multiplier: number) {
-            super(
-                multiplier,
-                "Fire Multiplier",
-                "FIRE"
-            );
-        }
+class FireMultiplier extends Multiplier {
+    /**
+     * Creates an instance of FireMultiplier.
+     *
+     * @param {number} multiplier Multiplier that will affect the pack.
+     */
+    constructor(multiplier: number) {
+        super(
+            multiplier,
+            "Fire Multiplier",
+            "FIRE"
+        );
     }
 }
+
+export { FireMultiplier };
