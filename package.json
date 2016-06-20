@@ -7,24 +7,19 @@
     "name": "Chris Normansell",
     "email": "chris.normansell@gmail.com"
   },
-
   "homepage": "http://kiwijs.org/",
   "bugs": "",
   "license": "MIT",
   "licenseUrl": "",
-
   "repository": {
     "type": "git",
     "url": ""
   },
-
   "main": "src",
-
   "scripts": {
     "start": "http-server -a localhost -p 3000",
     "build": "gulp"
   },
-
   "dependencies": {},
   "devDependencies": {
     "gulp": "^3.9.1",

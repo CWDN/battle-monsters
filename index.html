@@ -4,10 +4,15 @@
     <meta charset="utf-8" />
     <title>BattleMonsters</title>
     <script src="lib/kiwijs/build/kiwi.js"></script>
+    <script src="lib/easystarjs/bin/easystar-0.2.3.js"></script>
     <script src="plugins/damage-pipeline-1.0.0.min.js"></script>
-    <script src="build/BattleMonsters.js"></script>
+    <script src="plugins/pathFinding.js"></script>
+    <script data-main="build/game" src="lib/requirejs/require.js"></script>
 </head>
 <body style="margin:0px;padding:0px">
     <div id="content"></div>
 </body>
+<script>
+    require(['game'], function (game) {});
+</script>
 </html>
