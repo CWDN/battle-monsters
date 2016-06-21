@@ -41,14 +41,14 @@ abstract class TileEntity extends Sprite {
      *
      * @type {number}
      */
-    public dx : number = 0;
+    public dx: number = 0;
 
     /**
      * Current Y velocity
      *
      * @type {number}
      */
-    public dy : number = 0;
+    public dy: number = 0;
 
     /**
      * Creates an instance of TileEntity.
@@ -59,8 +59,8 @@ abstract class TileEntity extends Sprite {
      * @param y Starting Y position
      */
     constructor(
-        state : Kiwi.State,
-        texture : Kiwi.Textures.SpriteSheet,
+        state: Kiwi.State,
+        texture: Kiwi.Textures.SpriteSheet,
         x: number,
         y: number
     ) {
@@ -74,11 +74,11 @@ abstract class TileEntity extends Sprite {
      */
     public update() {
         super.update();
-        var delta : number = this.game.time.delta();
+        let delta: number = this.game.time.delta();
 
         // run emulated update
-        var xChange = this.prevDx * (delta / 1000);
-        var yChange = this.prevDy * (delta / 1000);
+        let xChange = this.prevDx * (delta / 1000);
+        let yChange = this.prevDy * (delta / 1000);
         this.nextXPos += xChange;
         this.nextYPos += yChange;
 
@@ -86,15 +86,15 @@ abstract class TileEntity extends Sprite {
          * X Movement
          */
         if (this.dx === 0 && this.prevDx !== 0) {
-            var progress = this.x / this.width;
-            var lowest = Math.floor(progress);
-            var leftPercentage = 1 - (progress - lowest);
+            let progress = this.x / this.width;
+            let lowest = Math.floor(progress);
+            let leftPercentage = 1 - (progress - lowest);
 
             if (this.prevDx < 0) {
                 leftPercentage = 1 - leftPercentage;
             }
 
-            var left = leftPercentage * this.width;
+            let left = leftPercentage * this.width;
 
             if (left !== 0) {
                 if (left < Math.abs(xChange)) {
@@ -114,15 +114,15 @@ abstract class TileEntity extends Sprite {
          * Y Movement
          */
         if (this.dy === 0 && this.prevDy !== 0) {
-            var progress = this.y / this.width;
-            var lowest = Math.floor(progress);
-            var leftPercentage = 1 - (progress - lowest);
+            let progress = this.y / this.width;
+            let lowest = Math.floor(progress);
+            let leftPercentage = 1 - (progress - lowest);
 
             if (this.prevDy < 0) {
                 leftPercentage = 1 - leftPercentage;
             }
 
-            var left = leftPercentage * this.width;
+            let left = leftPercentage * this.width;
 
             if (left !== 0) {
                 if (left < Math.abs(yChange)) {
@@ -160,7 +160,7 @@ abstract class TileEntity extends Sprite {
      */
     public moveUp() {
         this.resetHorizontalMovement();
-        this.playAnimation('up');
+        this.playAnimation("up");
 
         if (this.prevDx === 0) {
             this.dy = -this.speed;
@@ -174,7 +174,7 @@ abstract class TileEntity extends Sprite {
      */
     public moveDown() {
         this.resetHorizontalMovement();
-        this.playAnimation('down');
+        this.playAnimation("down");
 
         if (this.prevDx === 0) {
             this.dy = this.speed;
@@ -188,7 +188,7 @@ abstract class TileEntity extends Sprite {
      */
     public moveRight() {
         this.resetVerticalMovement();
-        this.playAnimation('right');
+        this.playAnimation("right");
 
         if (this.prevDy === 0) {
             this.dx = this.speed;
@@ -202,7 +202,7 @@ abstract class TileEntity extends Sprite {
      */
     public moveLeft() {
         this.resetVerticalMovement();
-        this.playAnimation('left');
+        this.playAnimation("left");
 
         if (this.prevDy === 0) {
             this.dx = -this.speed;
@@ -213,7 +213,7 @@ abstract class TileEntity extends Sprite {
      * Plays the idle animation.
      */
     public idle() {
-        this.playAnimation('idle');
+        this.playAnimation("idle");
     }
 
     /**
@@ -239,7 +239,7 @@ abstract class TileEntity extends Sprite {
      *
      * @param {string} name Animation name to play.
      */
-    public playAnimation(name : string) {
+    public playAnimation(name: string) {
         this.animation.play(name, false);
     }
 }

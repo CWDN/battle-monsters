@@ -1,5 +1,5 @@
-import { BaseMonster } from './BaseMonster';
-import { EarthMultiplier, WaterMultiplier } from '../../MultiplierLibrary';
+import { BaseMonster } from "./BaseMonster";
+import { EarthMultiplier, WaterMultiplier } from "../../MultiplierLibrary";
 
 class WindMonster extends BaseMonster {
     /**
@@ -20,8 +20,8 @@ class WindMonster extends BaseMonster {
     ) {
         super(state, texture, x, y, health);
 
-        var earthNode = new EarthMultiplier(2);
-        var waterNode = new WaterMultiplier(0.5);
+        let earthNode = new EarthMultiplier(2);
+        let waterNode = new WaterMultiplier(0.5);
 
         waterNode.addChild(this.damagePipeline);
         earthNode.addChild(waterNode);

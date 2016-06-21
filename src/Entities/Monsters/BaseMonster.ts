@@ -1,4 +1,4 @@
-import { TileEntity } from '../TileEntity';
+import { TileEntity } from "../TileEntity";
 
 abstract class BaseMonster extends TileEntity {
 

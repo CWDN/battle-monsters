@@ -3,7 +3,7 @@ class Intro extends Kiwi.State {
      * Creates an instance of Intro.
      */
     constructor() {
-        super('Intro');
+        super("Intro");
     }
 
     /**

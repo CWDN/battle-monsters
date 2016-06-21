@@ -1,4 +1,4 @@
-import { TileEntity } from '../Entities/TileEntity';
+import { TileEntity } from "../Entities/TileEntity";
 
 class KeyboardMovement extends Kiwi.Component {
 
@@ -8,7 +8,7 @@ class KeyboardMovement extends Kiwi.Component {
      * @protected
      * @type {Kiwi.Input.Key}
      */
-    protected leftKey : Kiwi.Input.Key;
+    protected leftKey: Kiwi.Input.Key;
 
 
     /**
@@ -17,7 +17,7 @@ class KeyboardMovement extends Kiwi.Component {
      * @protected
      * @type {Kiwi.Input.Key}
      */
-    protected rightKey : Kiwi.Input.Key;
+    protected rightKey: Kiwi.Input.Key;
 
 
     /**
@@ -26,7 +26,7 @@ class KeyboardMovement extends Kiwi.Component {
      * @protected
      * @type {Kiwi.Input.Key}
      */
-    protected downKey : Kiwi.Input.Key;
+    protected downKey: Kiwi.Input.Key;
 
 
     /**
@@ -35,16 +35,16 @@ class KeyboardMovement extends Kiwi.Component {
      * @protected
      * @type {Kiwi.Input.Key}
      */
-    protected upKey : Kiwi.Input.Key;
+    protected upKey: Kiwi.Input.Key;
 
     /**
      * Creates an instance of KeyboardMovement.
      *
      * @param {Kiwi.IChild} child Child the component is attached to.
      */
-    constructor (child : Kiwi.IChild) {
-        super(child, 'KeyboardMovement');
-        var keyboard = this.game.input.keyboard;
+    constructor (child: Kiwi.IChild) {
+        super(child, "KeyboardMovement");
+        let keyboard = this.game.input.keyboard;
 
         this.leftKey = keyboard.addKey(Kiwi.Input.Keycodes.A);
         this.rightKey = keyboard.addKey(Kiwi.Input.Keycodes.D);
@@ -58,7 +58,7 @@ class KeyboardMovement extends Kiwi.Component {
     public update() {
         super.update();
 
-        var owner = <TileEntity> this.owner;
+        let owner = <TileEntity> this.owner;
 
         if (this.leftKey.isDown) {
             owner.moveLeft();

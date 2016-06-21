@@ -1,4 +1,4 @@
-import { Multiplier } from './Multiplier';
+import { Multiplier } from "./Multiplier";
 
 class WindMultiplier extends Multiplier {
     /**
