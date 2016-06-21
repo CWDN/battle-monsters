@@ -1,5 +1,5 @@
 import { BaseMonster } from './BaseMonster';
-import { FireMultiplier, WindMultiplier } from '../../Nodes/Multipliers';
+import { FireMultiplier, WindMultiplier } from '../../MultiplierLibrary';
 
 class EarthMonster extends BaseMonster {
 

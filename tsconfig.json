@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "target": "es5",
-        "module": "amd",
+        "module": "system",
         "moduleResolution": "node",
         "isolatedModules": false,
         "experimentalDecorators": true,
@@ -27,7 +27,7 @@
     "buildOnSave": false,
     "files": [
         "./src/game.ts",
-        "./src/States.ts",
+        "./src/StateLibrary.ts",
         "./src/Components/KeyboardMovement.ts",
         "./src/Entities/Monsters/BaseMonster.ts",
         "./src/Entities/Monsters/EarthMonster.ts",
@@ -41,7 +41,7 @@
         "./src/Nodes/Multipliers/Multiplier.ts",
         "./src/Nodes/Multipliers/WaterMultiplier.ts",
         "./src/Nodes/Multipliers/WindMultiplier.ts",
-        "./src/Nodes/Multipliers.ts",
+        "./src/MultiplierLibrary.ts",
         "./src/States/Intro.ts",
         "./src/States/Loading.ts",
         "./src/States/Play.ts"

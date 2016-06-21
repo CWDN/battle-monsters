@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "dependencies": {
     "kiwijs": "1.4.0-release",
-    "easystarjs": "^0.2.3",
-    "requirejs": "^2.2.0"
+    "easystarjs": "^0.2.3"
   }
 }

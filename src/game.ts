@@ -1,7 +1,7 @@
 /// <reference path="../lib/kiwijs/build/kiwi.d.ts"/>
 /// <reference path="../plugins/DamagePipeline.d.ts"/>
 /// <reference path="../plugins/PathFinding.d.ts"/>
-import { Intro, Loading, Play } from './States';
+import { Intro, Loading, Play } from './StateLibrary';
 
 var gameOptions = {
   renderer: Kiwi.RENDERER_WEBGL,

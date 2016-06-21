@@ -20,7 +20,10 @@
     "start": "http-server -a localhost -p 3000",
     "build": "gulp"
   },
-  "dependencies": {},
+  "dependencies": {
+    "systemjs": "^0.19.31",
+    "typescript": "^1.8.10"
+  },
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",

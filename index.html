@@ -7,12 +7,24 @@
     <script src="lib/easystarjs/bin/easystar-0.2.3.js"></script>
     <script src="plugins/damage-pipeline-1.0.0.min.js"></script>
     <script src="plugins/pathFinding.js"></script>
-    <script data-main="build/game" src="lib/requirejs/require.js"></script>
+    <script src="node_modules/systemjs/dist/system.js"></script>
+    <script src="node_modules/typescript/lib/typescript.js"></script>
 </head>
 <body style="margin:0px;padding:0px">
     <div id="content"></div>
 </body>
 <script>
-    require(['game'], function (game) {});
+    System.config({
+        transpiler: 'typescript',
+        packages: {
+            src: {
+                defaultExtension: 'ts'
+            }
+        }
+    });
+
+    System
+        .import('src/game')
+        .then(null, console.error.bind(console));
 </script>
 </html>
