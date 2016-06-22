@@ -1,5 +1,6 @@
 import { BaseMonster, FireMonster } from "../Entities/Monsters";
 import { KeyboardMovement } from "../Components/KeyboardMovement";
+import { ServerMovement } from "../Components/ServerMovement";
 
 class Play extends Kiwi.State {
 
@@ -35,6 +36,11 @@ class Play extends Kiwi.State {
         this.character.components.add(
             new KeyboardMovement(this.character)
         );
+
+        this.character.components.add(
+            new ServerMovement(this.character)
+        );
+
 
         this.character.animation.add("idle", [0], 0.1, true, false);
         this.character.animation.add("down", [0, 1, 2, 3], 0.2, true, false);
