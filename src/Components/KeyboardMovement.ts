@@ -1,4 +1,5 @@
 import { TileEntity } from "../Entities/TileEntity";
+import Socket from "../Network/Socket";
 
 class KeyboardMovement extends Kiwi.Component {
 
@@ -62,15 +63,19 @@ class KeyboardMovement extends Kiwi.Component {
 
         if (this.leftKey.isDown) {
             owner.moveLeft();
+            Socket.emit("move", {"direction": "left"});
         }
         else if (this.rightKey.isDown) {
             owner.moveRight();
+            Socket.emit("move", {"direction": "right"});
         }
         else if (this.downKey.isDown) {
             owner.moveDown();
+            Socket.emit("move", {"direction": "down"});
         }
         else if (this.upKey.isDown) {
             owner.moveUp();
+            Socket.emit("move", {"direction": "up"});
         }
     }
 }
