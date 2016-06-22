@@ -2,49 +2,47 @@
 "use strict";
 
 var System = require('systemjs');
-var express = require('express');
+
+System.set(
+    'express',
+    System.newModule({
+        default: require('express')
+    })
+);
+
+System.set(
+    'socket.io',
+    System.newModule({
+        default: require('socket.io')
+    })
+);
+
+System.set(
+    'http',
+    System.newModule({
+        default: require('http')
+    })
+);
+
 
 System.config({
     packages: {
-        'Server/*': {
+        src: {
             defaultExtension: 'ts'
         },
-        "ts": {
-            "main": "plugin.js"
-        },
-        "typescript": {
-            "main": "typescript.js",
-            "meta": {
-                "typescript.js": {
-                    "exports": "ts"
-                }
-            }
+        typescript: {
+            main: "typescript.js"
         }
     },
+    transpiler: 'typescript',
     map: {
-        ts: "node_modules/plugin-typescript/lib",
         typescript: "node_modules/typescript/lib"
     },
-    transpiler: 'ts',
     paths: {
         'Server/*': 'src/Server/*',
     },
 });
 
-System.import('Server/boot.ts')
-    .then(function (server) {
-        var app = require('express')();
-        var httServer = require('http').Server(app);
-        httServer.listen(4000);
-        console.log('Listening on port 4000');
-        var io = require('socket.io')(httServer);
-
-        server.boot(app, io);
-    }).catch(
+System.import('Server/boot').catch(
     console.error.bind(console)
-    );
-
-
-// System.import('./src/Server/boot.ts').catch(
-//     console.error.bind(console)
-// );
+);
