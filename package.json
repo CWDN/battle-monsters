@@ -17,7 +17,7 @@
   },
   "main": "src",
   "scripts": {
-    "start": "http-server -a localhost -p 3000",
+    "start": "node bin/www",
     "build": "gulp"
   },
   "dependencies": {
