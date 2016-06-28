@@ -11,25 +11,15 @@ class ServerMovement extends Kiwi.Component {
     constructor (child: Kiwi.IChild) {
         super(child, "ServerMovement");
 
-        Socket.on("move", (data) => {
+        Socket.on("entity_move", (data) => {
             let owner = <TileEntity> this.owner;
-
-            let direction = data.direction;
-            switch (direction) {
-                case "down":
-                    owner.moveDown();
-                    break;
-                case "up":
-                    owner.moveUp();
-                    break;
-                case "left":
-                    owner.moveLeft();
-                    break;
-                case "right":
-                    owner.moveRight();
-                    break;
+            console.log(data);
+            if (owner.uuid === data.uuid) {
+                owner.setDestination(new Kiwi.Geom.Point(
+                   data.x,
+                   data.y
+                ));
             }
-
         });
     }
 }

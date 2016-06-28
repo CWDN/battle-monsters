@@ -4,7 +4,6 @@
 import { Intro, Loading, Play } from "./StateLibrary";
 
 let gameOptions = {
-  renderer: Kiwi.RENDERER_WEBGL,
   width: window.innerWidth,
   height: window.innerHeight,
   debug: Kiwi.DEBUG_OFF,

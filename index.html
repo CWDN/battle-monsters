@@ -21,7 +21,11 @@
             src: {
                 defaultExtension: 'ts'
             }
-        }
+        },
+        paths: {
+            'node/*': 'node_modules/*'
+        },
+        packageConfigPaths: ['node_modules/*/package.json']
     });
 
     System

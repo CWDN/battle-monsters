@@ -24,6 +24,13 @@ System.set(
     })
 );
 
+System.set(
+    'node-uuid',
+    System.newModule({
+        default: require('node-uuid')
+    })
+);
+
 
 System.config({
     packages: {

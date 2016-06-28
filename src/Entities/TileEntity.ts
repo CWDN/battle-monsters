@@ -1,72 +1,77 @@
+import UUID from "node/node-uuid";
 import Sprite = Kiwi.GameObjects.Sprite;
+import Socket from "../Network/Socket";
+import { ServerMovement } from "../Components/ServerMovement";
 
 abstract class TileEntity extends Sprite {
     /**
-     * Speed of the Actor.
+     * Number of tiles per second to move.
      *
      * @type {number}
      */
-    public speed: number = 225;
+    public speed: number = 2;
+
+    public velocity: Kiwi.Geom.Vector2;
+
+    public prevVelocity: Kiwi.Geom.Vector2;
 
     /**
-     * Next X Pos which is the actual X position.
+     * Unique identifier to share with the server.
      *
-     * @type {number}
+     * @type {string}
      */
-    private nextXPos: number = 0;
+    public uuid: string;
 
     /**
-     * Next Y Pos which is the actual Y position.
+     * X grid position of this entity.
      *
      * @type {number}
      */
-    private nextYPos: number = 0;
+    public gridX: number;
 
     /**
-     * Previous dx (velocity)
+     * Y grid position of this entity.
      *
      * @type {number}
      */
-    private prevDx: number = 0;
+    public gridY: number;
 
-    /**
-     * Previous dy (velocity)
-     *
-     * @type {number}
-     */
-    private prevDy: number = 0;
+    public direction: Kiwi.Geom.Vector2;
 
-    /**
-     * Current X velocity
-     *
-     * @type {number}
-     */
-    public dx: number = 0;
+    public nextDirection: Kiwi.Geom.Vector2;
 
-    /**
-     * Current Y velocity
-     *
-     * @type {number}
-     */
-    public dy: number = 0;
+    public destination: Kiwi.Geom.Point;
+
+    public isMoving: boolean;
 
     /**
      * Creates an instance of TileEntity.
      *
-     * @param {Kiwi.State} state State entity is in
-     * @param {Kiwi.Textures.SpriteSheet} texture Texture to draw
-     * @param x Starting X position
-     * @param y Starting Y position
+     * @param state {Kiwi.State} state State entity is in
+     * @param texture {Kiwi.Textures.SpriteSheet} texture Texture to draw
+     * @param x {number} Starting X position
+     * @param y {number} Starting Y position
+     * @param uuid {string} Unique identifier to talk to the server with.
      */
     constructor(
         state: Kiwi.State,
         texture: Kiwi.Textures.SpriteSheet,
         x: number,
-        y: number
+        y: number,
+        uuid: string
     ) {
         super(state, texture, x, y);
-        this.nextXPos = x;
-        this.nextYPos = y;
+
+        this.gridX = x;
+        this.gridY = y;
+
+        this.x = x * this.width;
+        this.y = y * this.height;
+
+        this.uuid = uuid;
+        this.direction = new Kiwi.Geom.Vector2(0, 0);
+        this.destination = new Kiwi.Geom.Point(this.gridX, this.gridY);
+        this.components.add(new ServerMovement(this));
     }
 
     /**
@@ -74,83 +79,106 @@ abstract class TileEntity extends Sprite {
      */
     public update() {
         super.update();
+
         let delta: number = this.game.time.delta();
 
-        // run emulated update
-        let xChange = this.prevDx * (delta / 1000);
-        let yChange = this.prevDy * (delta / 1000);
-        this.nextXPos += xChange;
-        this.nextYPos += yChange;
+        if (this.direction.equal(this.calculateVectorFromDest()) === false) {
+            this.direction = this.calculateVectorFromDest();
+        }
 
-        /*
-         * X Movement
-         */
-        if (this.dx === 0 && this.prevDx !== 0) {
-            let progress = this.x / this.width;
-            let lowest = Math.floor(progress);
-            let leftPercentage = 1 - (progress - lowest);
+        let movementChange = Math.floor((this.speed * this.width) * (delta / 1000));
+        let velocity = this.direction.clone().multiplyScalar(movementChange);
 
-            if (this.prevDx < 0) {
-                leftPercentage = 1 - leftPercentage;
-            }
+        this.playAnimationAccordingToDirection();
+        this.applyVelocity(velocity);
+        this.nextDirection = new Kiwi.Geom.Vector2(0, 0);
+    }
 
-            let left = leftPercentage * this.width;
+    protected applyVelocity(velocity: Kiwi.Geom.Vector2) {
+        let pixelDestination = this.getPixelDestination();
+        let pixelsLeftToDest = this.transform.getPositionPoint().distanceTo(pixelDestination);
 
-            if (left !== 0) {
-                if (left < Math.abs(xChange)) {
-                    this.x += left * (xChange / Math.abs(xChange));
-                    this.prevDx = 0;
-                    this.idle();
-                } else {
-                    this.x = this.nextXPos;
-                }
+        if (pixelsLeftToDest < Math.abs(velocity.x) || pixelsLeftToDest < Math.abs(velocity.y)) {
+            this.x = pixelDestination.x;
+            this.y = pixelDestination.y;
+            this.gridX = this.destination.x;
+            this.gridY = this.destination.y;
+
+            if (this.isNextDirectionZero()) {
+                this.resetDirection();
             } else {
-                this.idle();
-                this.prevDx = 0;
-            }
-        }
-
-        /*
-         * Y Movement
-         */
-        if (this.dy === 0 && this.prevDy !== 0) {
-            let progress = this.y / this.width;
-            let lowest = Math.floor(progress);
-            let leftPercentage = 1 - (progress - lowest);
-
-            if (this.prevDy < 0) {
-                leftPercentage = 1 - leftPercentage;
+                this.direction = this.nextDirection;
             }
 
-            let left = leftPercentage * this.width;
-
-            if (left !== 0) {
-                if (left < Math.abs(yChange)) {
-                    this.y += left * (yChange / Math.abs(yChange));
-                    this.prevDy = 0;
-                    this.idle();
-                } else {
-                    this.y = this.nextYPos;
-                }
-            } else {
-                this.prevDy = 0;
-                this.idle();
-            }
+            return;
         }
 
-        if (this.dx !== 0) {
-            this.prevDx = this.dx;
+        this.x += velocity.x;
+        this.y += velocity.y;
+    }
+
+    protected calculateVectorFromDest() {
+        let diff = this.destination.clone().subtractFrom(this.gridX, this.gridY);
+
+        return new Kiwi.Geom.Vector2(
+            diff.x,
+            diff.y
+        );
+    }
+
+    protected calculateDestFromDirection() {
+        let position = new Kiwi.Geom.Point(this.gridX, this.gridY);
+
+        return position.addTo(this.direction.x, this.direction.y);
+    }
+
+    protected calculateDirFromDestination() {
+        let distancePoint = this.destination.subtractFrom(this.gridX, this.gridY);
+
+        return Kiwi.Geom.Vector2.fromPoint(distancePoint);
+    }
+
+    protected isDirectionZero() {
+        return this.direction.equal(new Kiwi.Geom.Vector2(0, 0));
+    }
+
+    protected isNextDirectionZero() {
+        return this.nextDirection.equal(new Kiwi.Geom.Vector2(0, 0));
+    }
+
+    protected resetDirection() {
+        this.direction = new Kiwi.Geom.Vector2(0, 0);
+    }
+
+    protected getPixelDestination() {
+        return new Kiwi.Geom.Point(
+            this.destination.x * this.width,
+            this.destination.y * this.height
+        );
+    }
+
+    protected playAnimationAccordingToDirection() {
+        if (this.direction.x > 0) {
+            this.playAnimation("right");
+            return;
         }
 
-        if (this.dy !== 0) {
-            this.prevDy = this.dy;
+        if (this.direction.x < 0) {
+            this.playAnimation("left");
+            return;
         }
 
-        this.x += this.dx * (delta / 1000);
-        this.y += this.dy * (delta / 1000);
+        if (this.direction.y > 0) {
+            this.playAnimation("down");
+            return;
+        }
 
-        this.dx = 0;
-        this.dy = 0;
+        if (this.direction.y < 0) {
+            this.playAnimation("up");
+            return;
+        }
+
+        this.playAnimation("idle");
     }
 
     /**
@@ -159,12 +187,8 @@ abstract class TileEntity extends Sprite {
      * @return {void}
      */
     public moveUp() {
-        this.resetHorizontalMovement();
-        this.playAnimation("up");
-
-        if (this.prevDx === 0) {
-            this.dy = -this.speed;
-        }
+        let newDirection = new Kiwi.Geom.Vector2(0, -1);
+        this.applyNewDirection(newDirection);
     }
 
     /**
@@ -173,12 +197,8 @@ abstract class TileEntity extends Sprite {
      * @return {void}
      */
     public moveDown() {
-        this.resetHorizontalMovement();
-        this.playAnimation("down");
-
-        if (this.prevDx === 0) {
-            this.dy = this.speed;
-        }
+        let newDirection = new Kiwi.Geom.Vector2(0, 1);
+        this.applyNewDirection(newDirection);
     }
 
     /**
@@ -187,11 +207,14 @@ abstract class TileEntity extends Sprite {
      * @return {void}
      */
     public moveRight() {
-        this.resetVerticalMovement();
-        this.playAnimation("right");
+        let newDirection = new Kiwi.Geom.Vector2(1, 0);
+        this.applyNewDirection(newDirection);
+    }
 
-        if (this.prevDy === 0) {
-            this.dx = this.speed;
+    public setDestination(destination: Kiwi.Geom.Point) {
+        if (this.destination.equals(destination) === false) {
+            this.destination = destination;
+            this.direction = this.calculateDirFromDestination();
         }
     }
 
@@ -201,37 +224,18 @@ abstract class TileEntity extends Sprite {
      * @return {void}
      */
     public moveLeft() {
-        this.resetVerticalMovement();
-        this.playAnimation("left");
+        let newDirection = new Kiwi.Geom.Vector2(-1, 0);
+        this.applyNewDirection(newDirection);
+    }
 
-        if (this.prevDy === 0) {
-            this.dx = -this.speed;
+    public applyNewDirection(newDirection: Kiwi.Geom.Vector2) {
+        if (this.isDirectionZero()) {
+            this.direction = newDirection;
+            Socket.emit("move", this.direction);
+            this.destination = this.calculateDestFromDirection();
         }
-    }
 
-    /**
-     * Plays the idle animation.
-     */
-    public idle() {
-        this.playAnimation("idle");
-    }
-
-    /**
-     * Resets the velocity of the vertical movement.
-     *
-     * @return {void}
-     */
-    public resetVerticalMovement() {
-        this.dy = 0;
-    }
-
-    /**
-     * Resets the velocity of the horizontal movement.
-     *
-     * @return {void}
-     */
-    public resetHorizontalMovement() {
-        this.dx = 0;
+        // this.nextDirection = newDirection;
     }
 
     /**

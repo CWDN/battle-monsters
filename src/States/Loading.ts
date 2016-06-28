@@ -9,8 +9,6 @@ class Loading extends Kiwi.State {
     */
     public preload(): void {
         super.preload();
-        this.addImage("kiwiName", "assets/img/kiwijs-name.png");
-        this.addSpriteSheet("icons", "assets/img/kiwijs-icons.png", 100, 90);
         this.addSpriteSheet("tiles", "assets/textures/tileset.png", 96, 96);
         this.addJSON("tilemap", "assets/tilemaps/arena.json");
         this.addSpriteSheet("character", "assets/textures/character.png", 96, 96);
