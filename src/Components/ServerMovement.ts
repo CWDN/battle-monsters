@@ -13,7 +13,7 @@ class ServerMovement extends Kiwi.Component {
 
         Socket.on("entity_move", (data) => {
             let owner = <TileEntity> this.owner;
-            console.log(data);
+
             if (owner.uuid === data.uuid) {
                 owner.setDestination(new Kiwi.Geom.Point(
                    data.x,
