@@ -23,6 +23,7 @@ io.on("connection", function (socket: SocketIO.Socket) {
     socket.on("move", function (data) {
         data.uuid = players[socket.id];
         let entity = entities[data.uuid];
+
         entity.x += data.x;
         entity.y += data.y;
         entities[data.uuid] = entity;
@@ -57,9 +58,6 @@ io.on("connection", function (socket: SocketIO.Socket) {
 
         entities[uuid] = player;
         players[socket.id] = uuid;
-
-        x++;
-        y++;
     });
 
     socket.on("disconnect", function () {
