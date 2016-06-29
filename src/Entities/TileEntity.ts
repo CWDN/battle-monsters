@@ -133,7 +133,7 @@ abstract class TileEntity extends Sprite {
     }
 
     protected calculateDirFromDestination() {
-        let distancePoint = this.destination.subtractFrom(this.gridX, this.gridY);
+        let distancePoint = this.destination.clone().subtractFrom(this.gridX, this.gridY);
 
         return Kiwi.Geom.Vector2.fromPoint(distancePoint);
     }
@@ -213,8 +213,9 @@ abstract class TileEntity extends Sprite {
 
     public setDestination(destination: Kiwi.Geom.Point) {
         if (this.destination.equals(destination) === false) {
-            this.destination = destination;
-            this.direction = this.calculateDirFromDestination();
+            this.destination.copyFrom(destination);
+            let newDirection = this.calculateDirFromDestination();
+            this.direction.copyFrom(newDirection);
         }
     }
 
