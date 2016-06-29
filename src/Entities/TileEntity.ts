@@ -11,10 +11,6 @@ abstract class TileEntity extends Sprite {
      */
     public speed: number = 2;
 
-    public velocity: Kiwi.Geom.Vector2;
-
-    public prevVelocity: Kiwi.Geom.Vector2;
-
     /**
      * Unique identifier to share with the server.
      *
